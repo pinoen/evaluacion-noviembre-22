@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 // El componente App es el padre de:
 // - Estatus
 // - Posteos
@@ -6,12 +6,25 @@ import React from 'react'
 // MÉTODOS: App debe tener un método para aumentar este número y que pueda ser ejecutado por su nieto Post.
 // PROPS: App deberá pasar por props lo necesario a sus componenetes internos para que manipulen o lean su estado.
 
+import Estatus from './components/Estatus'
+import Posteos from './components/Posteos'
+
 function App() {
+
+  const [total, setTotal] = useState(0);
+
+  const addLike = () => {
+    setTotal(total + 1);
+  }
 
   return (
     <div className="App">
-      <Estatus />
-      <Posteos />
+      <Estatus
+        total={total}
+      />
+      <Posteos
+        aumentar={addLike}
+      />
     </div>
   );
 }
